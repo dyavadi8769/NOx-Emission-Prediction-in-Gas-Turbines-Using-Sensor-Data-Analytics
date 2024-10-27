@@ -71,6 +71,41 @@ NOx Emissions [mg/m³]: The concentration of Nitrogen Oxides (NOx) in the exhaus
 6. Heteroscedasticity: In regression tasks, heteroscedasticity (i.e., non-constant variance of residuals) can be a problem. If the variance of the errors increases with the size of the predicted value, it can violate regression assumptions and affect the model’s ability to generalize.
 7. Model Generalization: Ensuring that the regression model generalizes well to new, unseen data is always a challenge. If the model fits the training data too closely, it may fail to make accurate predictions in different environmental or operational conditions.
 
+## Reliable Techniques for performing predictive Task from the above plot are:
+1. Random Forest Regression:
+- Performance: Random Forest has an R² score of 0.92 on the training set and 0.79 on the test set, indicating it is able to generalize well without overfitting significantly.
+- Why Reliable: Random Forest is an ensemble learning method that works by averaging the predictions of multiple decision trees. This method helps in reducing variance and overfitting while capturing nonlinear relationships between features and the target variable (NOx emissions). It is robust to outliers and works well with datasets that have complex feature interactions, which is relevant in this context given the interaction between turbine and environmental variables.
+  
+2. Support Vector Regression (SVR):
+- Performance: SVR also shows solid performance with an R² score of 0.84 on the training set and 0.79 on the test set, indicating consistent generalization.
+- Why Reliable: SVR is effective for capturing complex relationships, especially in cases where the data might have high dimensionality or nonlinear patterns. SVR with kernel (radial basis function (RBF)) can effectively model the interactions between variables without overfitting. It is particularly useful when there are few data points that define the boundary of the response, making it reliable for regression tasks like predicting NOx emissions with nonlinear patterns.
+  
+Why These Techniques Are Reliable:
+- Nonlinear Modeling: Both Random Forest and SVR can capture nonlinear relationships between features and the target variable, which is likely present in the dataset (e.g., turbine temperature, pressure, and ambient conditions influencing NOx emissions).
+- Robustness to Overfitting: The difference between the training and test scores for both Random Forest and SVR is relatively small, indicating that these models generalize well to unseen data. Random Forest, in particular, is less prone to overfitting because of its ensemble nature, while SVR uses regularization parameters (like C and epsilon) to avoid overfitting.
+-Flexibility: Random Forest can handle large feature spaces and capture complex interactions between features, while SVR's use of kernel allows it to model nonlinear relationships, making both methods versatile and adaptable for a wide range of data characteristics.
+
+## Analysis of the Impact of Training Dataset Size on Generalization Performance:
+As the training dataset size increases, the generalization performance of the model improves steadily. Here's a detailed analysis:
+
+1. Training R² Score:
+
+- At 20% training size, the model achieves a training R² score of 0.8631.
+- As the training size increases to 60%, the training R² stabilizes around 0.8561 to 0.8450, suggesting the model has sufficient data to learn from without overfitting. This slight fluctuation indicates that the model is generalizing well with the increase in training data.
+
+2. Test R² Score (Generalization):
+
+- The test R² starts at 0.7181 when using only 20% of the data for training, which shows reasonable performance but leaves room for improvement.
+- As the training data increases to 40%, the test R² improves to 0.7682, reflecting better generalization.
+- The test R² continues to improve gradually as more data is introduced, reaching 0.7951 at 99% training size. This shows that more training data helps the model generalize better and reduces potential overfitting.
+
+3. Conclusion:
+
+- As the training size increases, both the training and test R² scores improve, but the test R² shows more significant gains. This indicates that the model benefits from more data to generalize well, with diminishing returns beyond 60-80% of the training data.
+- The best generalization performance is observed with 99% of the training data, where the test R² reaches 0.7951. Therefore, increasing the training dataset size improves generalization, but the most substantial improvements happen between 20% and 60% of the data.
+
+In summary, more training data leads to better generalization performance, but beyond a certain point (~80%), the improvement becomes marginal.
+
 ## Summary of findings
 
 1. Most Impactful Step: Feature Scaling was the single most important step in the pre-processing sequence, boosting the model’s R² score from 0.266347 to 0.855444. This highlights the importance of ensuring features are on the same scale, especially for SVR models that rely on distance-based optimization.
