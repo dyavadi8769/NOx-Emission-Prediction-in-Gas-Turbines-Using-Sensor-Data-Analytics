@@ -125,3 +125,16 @@ The best pre-processing sequence for this SVR model is:
 - Scaling
   
 This sequence resulted in the highest R² score of 0.814374. Additional steps like PCA and feature selection did not yield significant improvements and may be omitted unless necessary for reducing dimensionality or computational load.
+
+# Author:
+
+```bash
+Author: Sai Kiran Reddy Dyavadi
+Role  : Data Scientist
+Email : dyavadi324@gmail.com
+```
+
+```bash
+Author: Rishitha Nimma
+Email : rishitha532@gmail.com
+```
